@@ -1,0 +1,96 @@
+<html>
+    <head>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <!-- CSS framework: materialize -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <title>Learning HQ</title>
+    </head>
+    <body>
+        <style>
+
+            html, body{
+                height: 100%;
+                width: 100%;
+            }
+
+            body {           
+                background-image: url("static/download.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                text-align: center;
+                color: #d1d1d1d8;
+                font-family: "Philosopher", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+            .logoutBtn {
+                margin: auto;
+                color: #000000d8;
+                background-color: rgba(255, 255, 255, 0.5);
+                border: 0px;
+                border-radius: 10px;
+                width: 70px;
+            
+            }
+            #logOutBtn{
+                color: #000000d8;
+            }
+            .buttons{
+                margin: auto;
+                display: grid;
+                place-items: center;
+                grid-template-columns: auto auto;
+                width: 440px;
+            }
+            .buttonItem{
+                width: 200px;
+                height: 200px;
+                border-radius: 20px;
+                color: #000000d8;
+                background-color: rgba(255, 255, 255, 0.5);
+                margin: 10px;
+                font-size: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+
+            }
+            #learnBtn, #battleBtn{
+                color: #000000d8;
+            }
+
+
+        </style>
+
+        <div class="logoutBtn">
+            <a id="logOutBtn" href="{{url_for('logout')}}">Log Out</a>
+        </div>
+        <h1>Welcome to Learning Fantasy, {{username}}</h1>
+        <h4>What do you want to do?</h4>
+
+        <div class="buttons">
+            <div class="learn buttonItem">
+                <a id="learnBtn" href="{{url_for('learn')}}">Learn</a>
+            </div>
+            <div class="battle buttonItem">
+                <a id="battleBtn" href="#">Battle(WIP)</a>
+            </div>
+        </div>
+        
+
+        <script>
+
+            names = ["learning Fantacy", "Eduaction Escapesm", "Recall Revery", ]
+
+            
+
+        </script>
+    </body>
+</html>

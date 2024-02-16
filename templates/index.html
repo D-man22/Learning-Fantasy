@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- installing jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- CSS framework: materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <title>Log In!</title>    
+</head>
+
+<body>
+    <style>
+        html, body{
+            height: 100%;
+            width: 100%;
+        }
+
+        body {           
+            background-image: url("static/forest.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            font-family: "Philosopher", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        form {
+            font-family: "Philosopher", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        h2, h5 {
+            text-align: center;
+            color: #d1d1d1d8;
+        }
+    
+
+        #username1, #username, #password, #password1, #password2 {
+            max-width: 50%;
+            color: #D1D1D1;
+        }
+        #logInBtn, #createAccountBtn {
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            border: none;
+            
+        }
+
+    
+    </style>
+    <div class="content">
+
+
+        <h2>Welcome to Learning Fantasy</h1>
+        <h5>Log In or Sign Up!</h4>
+
+        <form class="center" id="logIn" method="POST" action="{{url_for('login')}}">
+            <input type="text" id="username" name="username" placeholder="Username">
+            <input type="text" id="password" name="password" placeholder="Password">
+            <br>
+            <input type="submit" id="logInBtn" value="Log In">
+        </form>
+        <form id="createAccount" class="center" method="POST" action="{{url_for('application_launch')}}">
+            <input type="text" id="username1" name="username1" placeholder="Username">
+            <input type="password" id="password1" name="password1" placeholder="Password">
+            <input type="password" id="password2" name="password2" placeholder="Confirm Password">
+            <br>
+            <input type="submit" id="createAccountBtn" value="Create Acount">
+        </form>
+        <p id = "txt">{{messsage}}</p>
+    </div>
+    <!-- More Frameworks for CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript">
+
+  
+
+
+
+        //    $("#logInBtn").click(test);
+
+        // function success1(response){
+        //     $("#txt").text("Success!!!!"); 
+        //     console.log(response);
+        // }
+        // function success2(){
+        //     $("#txt").text("Success 2");
+        // }
+        
+        // function createAccount(event) {
+        //     event.preventDefault();   
+        //     var pass1 = $("#password1").val();
+        //     var pass2 = $("#password2").val();
+        //     if (pass1 == pass2) {
+        //         var createAccountObj = {
+        //             mode: 'createAccount',
+        //             username: $("#username1").val(),
+        //             password: pass1
+        //         };
+        //         $.ajax({
+        //             url: 'http://127.0.0.1:5000/receiver', 
+        //             type: "POST",
+        //             dataType: "json",
+        //             data: createAccountObj,
+        //             success: success1
+        //         });
+
+        //     } else {
+        //         alert("Your passwords do not match!");
+        //     };
+            
+        // }
+
+
+        // $("#createAccount").submit(createAccount);
+        
+
+    </script>
+</body>
+
+</html>
