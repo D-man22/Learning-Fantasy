@@ -4,12 +4,18 @@ import cgitb, cgi
 cgitb.enable()
 
 import sqlite3, json
-from helper import show_data, get_input, todo_app, tasks_html, create_json
+import mysql.connector
 
 formDataLocal = cgi.FieldStorage()
 
 
-connection = sqlite3.connect('app.db', check_same_thread=False)
+#connection = sqlite3.connect('app.db', check_same_thread=False)
+connection = mysql.connector.connect(
+  host="mysql://root:DjMqeN1ePD7NHQ2A@mysql-rds-noted-cherry-pz2e.cjaeoe84erpr.ca-central-1.rds.amazonaws.com:3306/primarydb",
+  user="root",
+  password="DjMqeN1ePD7NHQ2A",
+  database="primarydb"
+)
 
 sql = connection.cursor()
 
