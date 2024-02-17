@@ -11,7 +11,7 @@ formDataLocal = cgi.FieldStorage()
 
 #connection = sqlite3.connect('app.db', check_same_thread=False)
 connection = mysql.connector.connect(
-  host="mysql://root:DjMqeN1ePD7NHQ2A@mysql-rds-noted-cherry-pz2e.cjaeoe84erpr.ca-central-1.rds.amazonaws.com:3306/primarydb",
+  host="mysql-rds-noted-cherry-pz2e.cjaeoe84erpr.ca-central-1.rds.amazonaws.com",
   user="root",
   password="DjMqeN1ePD7NHQ2A",
   database="primarydb"
