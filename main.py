@@ -176,7 +176,7 @@ def login():
     if request.method == "POST":
         username = request.form.get('username')
         password = request.form.get('password')
-        #user_check = check_user(username, password)
+        user_check = check_user(username, password)
         user_check = True
         if user_check != False:
             session["logged_in"] = True
@@ -192,8 +192,7 @@ def login():
 
 @app.route("/test", methods=["GET", "POST"])
 def testFlask():
-    if session.get("logged_in") != True:
-        return redirect(url_for("login"))
+    
     return "<p>Hello World</p> <h1>This is a new tag</h1>"
 
 @app.route("/logout")
