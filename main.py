@@ -22,7 +22,7 @@ user = 'root'
 password = 'DjMqeN1ePD7NHQ2A'
 database = 'primarydb'
 
-db = pymysql.connections.Connection(
+db = mysql.connections.Connection(
     host=hostname,
     user=user,
     password=password,
