@@ -9,6 +9,15 @@ import mysql.connector
 formDataLocal = cgi.FieldStorage()
 import pymysql
 
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, Response
+from flask_cors import CORS
+
+#Set up Flask:
+app = Flask(__name__)
+#Set up Flask to bypass CORS:
+cors = CORS(app)
+
+from flask_mysqldb import MySQL
 
 # connection = sqlite3.connect('app.db', check_same_thread=False)
 # connection = mysql.connector.connect(
@@ -22,14 +31,21 @@ user = 'root'
 password = 'DjMqeN1ePD7NHQ2A'
 database = 'primarydb'
 
-db = pymysql.connections.Connection(
-    host=hostname,
-    user=user,
-    password=password,
-    database=database
-)
+app.config['MYSQL_HOST'] = hostname
+app.config['MYSQL_USER'] = user
+app.config['MYSQL_PASSWORD'] = password
+app.config['MYSQL_DB'] = database
+ 
+mysql = MySQL(app)
 
-sql = db.cursor()
+# db = pymysql.connections.Connection(
+#     host=hostname,
+#     user=user,
+#     password=password,
+#     database=database
+# )
+
+sql = mysql.cursor()
 
 # account and questions tables
 
@@ -51,7 +67,7 @@ create table if not exists questions(
 
 
 # sql.execute('insert into questions (questions, possibleAnswers, rightAnswers, isMath, isFrench, isHistory, isScience, difficulty) values ("a", "b", "c", 1, 2 ,3, 4, 5)')
-# connection.commit()
+# mysql.connection.commit()
 
 def add_question(question, possibleAnswers, rightAnswer, isMath, isFrench, isHistory, isScience, difficulty):
     data = sql.execute('select * from questions where questions = ?', [question])
@@ -60,7 +76,7 @@ def add_question(question, possibleAnswers, rightAnswer, isMath, isFrench, isHis
         print("<script>alert('There is already this question in the database.'); window.location.reload();</script>")
     else:
         sql.execute('insert into questions (questions, possibleAnswers, rightAnswers, isMath, isFrench, isHistory, isScience, difficulty) values (?, ?, ?, ?, ?, ?, ?, ?)', [question, possibleAnswers, rightAnswer, isMath, isFrench, isHistory, isScience, difficulty])
-        connection.commit()
+        mysql.connection.commit()
 
 
 def add_user(username, password):
@@ -70,7 +86,7 @@ def add_user(username, password):
         return "There already is an account with that name!"
     else:
         sql.execute('insert into users (username, password, health) values (?, ?, 1)', [username, password])
-        connection.commit()
+        mysql.connection.commit()
         return "Account created Succesfully!"
 
 def check_user(username, password):
@@ -87,7 +103,7 @@ def update_user_question(question_id, user_id):
     data = data.fetchone()
     new_data = data + question_id + " "
     sql.execute('''update users set questionsKnown = ? where userId = ?''', [new_data, user_id])
-    connection.commit()
+    mysql.connection.commit()
 
 
 def get_user_questions(user_id):
@@ -98,12 +114,12 @@ def get_user_questions(user_id):
 
 def remove_user(user_id):
     sql.execute('''delete from users where userId = ?''', [user_id])
-    connection.commit()
+    mysql.connection.commit()
 
 
 def update_user_health(user_id, amount):
     sql.execute('''update users set health = ? where userId = ?''', [amount, user_id])
-    connection.commit()
+    mysql.connection.commit()
 
 
 def get_user_data(user_id):
@@ -142,16 +158,6 @@ def get_questions(user_id):
 
 #flask
 
-
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify, Response
-from flask_cors import CORS
-    
-
-
-#Set up Flask:
-app = Flask(__name__)
-#Set up Flask to bypass CORS:
-cors = CORS(app)
 
 app.secret_key = "0123456789876543210"
 
