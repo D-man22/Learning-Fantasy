@@ -50,7 +50,8 @@ def getdb():
             ssl_ca='SSL/certs/ca-cert.pem'
         )
     return g.db
-db = getdb()
+with app.app_context():
+    db = getdb()
 
 def close_db(e=None):
     db = g.pop('db', None)
