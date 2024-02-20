@@ -7,6 +7,7 @@ import sqlite3, json
 import mysql.connector
 
 formDataLocal = cgi.FieldStorage()
+import pymysql
 
 
 # connection = sqlite3.connect('app.db', check_same_thread=False)
