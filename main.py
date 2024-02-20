@@ -31,21 +31,15 @@ user = 'root'
 password = 'DjMqeN1ePD7NHQ2A'
 database = 'primarydb'
 
-app.config['MYSQL_HOST'] = hostname
-app.config['MYSQL_USER'] = user
-app.config['MYSQL_PASSWORD'] = password
-app.config['MYSQL_DB'] = database
- 
-mysql = MySQL(app)
 
-# db = pymysql.connections.Connection(
-#     host=hostname,
-#     user=user,
-#     password=password,
-#     database=database
-# )
+db = pymysql.connections.Connection(
+    host=hostname,
+    user=user,
+    password=password,
+    database=database
+)
 
-sql = mysql.cursor()
+sql = db.cursor()
 
 # account and questions tables
 
