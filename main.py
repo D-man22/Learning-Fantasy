@@ -9,7 +9,7 @@ import mysql.connector
 formDataLocal = cgi.FieldStorage()
 import pymysql
 
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify, Response
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, Response, g, current_app
 from flask_cors import CORS
 
 #Set up Flask:
@@ -17,7 +17,7 @@ app = Flask(__name__)
 #Set up Flask to bypass CORS:
 cors = CORS(app)
 
-from flask_mysqldb import MySQL
+from flask_sqlalchemy import SQLAlchemy
 
 # connection = sqlite3.connect('app.db', check_same_thread=False)
 # connection = mysql.connector.connect(
@@ -32,14 +32,30 @@ password = 'DjMqeN1ePD7NHQ2A'
 database = 'primarydb'
 
 
-db = pymysql.connections.Connection(
-    host=hostname,
-    user=user,
-    password=password,
-    database=database
-)
+# db = pymysql.connections.Connection(
+#     host=hostname,
+#     user=user,
+#     password=password,
+#     database=database
+# )
 
-sql = db.cursor()
+def getdb():
+    if 'db' not in g or not g.db.is_connected():
+        g.db = mysql.connector.connect(
+            host=current_app.config['3306'],
+            user=current_app.config[user],
+            password=current_app.config[password],
+            database=current_app.config[database],
+            ssl_verify_identity=True,
+            ssl_ca='SSL/certs/ca-cert.pem'
+        )
+    return g.db
+
+db = getdb()
+
+sql = db.cursor(dictionary=True)
+
+
 
 # account and questions tables
 
