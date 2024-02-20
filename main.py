@@ -22,7 +22,7 @@ user = 'root'
 password = 'DjMqeN1ePD7NHQ2A'
 database = 'primarydb'
 
-db = mysql.connections.Connection(
+db = pymysql.connections.Connection(
     host=hostname,
     user=user,
     password=password,
@@ -33,13 +33,7 @@ sql = db.cursor()
 
 # account and questions tables
 
-sql.execute('''
-create table if not exists users(
-    "userId" integer primary key autoincrement,
-    "username" Text,
-    "password" Text,
-    "questionsKnown" Text,
-    "health" integer)''')
+sql.execute('''create table if not exists users("userId" integer primary key autoincrement,"username" Text,"password" Text,"questionsKnown" Text,"health" integer)''')
 
 sql.execute('''
 create table if not exists questions(
