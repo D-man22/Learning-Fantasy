@@ -58,10 +58,10 @@ sql = db.cursor(dictionary=True)
 
 
 # account and questions tables
+with app.app_context():
+    sql.execute('''create table if not exists users("userId" integer primary key autoincrement,"username" Text,"password" Text,"questionsKnown" Text,"health" integer)''')
 
-sql.execute('''create table if not exists users("userId" integer primary key autoincrement,"username" Text,"password" Text,"questionsKnown" Text,"health" integer)''')
-
-sql.execute('''
+    sql.execute('''
 create table if not exists questions(
     "questionId" integer primary key autoincrement,
     "questions" Text,
@@ -80,6 +80,8 @@ create table if not exists questions(
 # mysql.connection.commit()
 
 def add_question(question, possibleAnswers, rightAnswer, isMath, isFrench, isHistory, isScience, difficulty):
+    connection = get_db()
+    sql = connection.cursor()
     data = sql.execute('select * from questions where questions = ?', [question])
     total_rows = len(data.fetchall())
     if total_rows > 0:
@@ -90,6 +92,8 @@ def add_question(question, possibleAnswers, rightAnswer, isMath, isFrench, isHis
 
 
 def add_user(username, password):
+    connection = get_db()
+    sql = connection.cursor()
     data = sql.execute('select * from users where username = ?', [username])
     total_rows = len(data.fetchall())
     if total_rows > 0:
@@ -100,6 +104,8 @@ def add_user(username, password):
         return "Account created Succesfully!"
 
 def check_user(username, password):
+    connection = get_db()
+    sql = connection.cursor()
     result = sql.execute('select * from users where username = ? and password = ?', [username, password])
     data = result.fetchone()
     if data:
@@ -109,6 +115,8 @@ def check_user(username, password):
     
 
 def update_user_question(question_id, user_id):
+    connection = get_db()
+    sql = connection.cursor()
     data = sql.execute('select questionsKnown from users where userId = ?', [user_id])
     data = data.fetchone()
     new_data = data + question_id + " "
@@ -117,31 +125,44 @@ def update_user_question(question_id, user_id):
 
 
 def get_user_questions(user_id):
+    connection = get_db()
+    sql = connection.cursor()
     data = sql.execute('select questionsKnown from users where userId = ?', [user_id])
     data = data.fetchone()
     return data.split(" ")
 
 
 def remove_user(user_id):
+    connection = get_db()
+    sql = connection.cursor()
     sql.execute('''delete from users where userId = ?''', [user_id])
     mysql.connection.commit()
 
 
 def update_user_health(user_id, amount):
+    connection = get_db()
+    sql = connection.cursor()
     sql.execute('''update users set health = ? where userId = ?''', [amount, user_id])
     mysql.connection.commit()
 
 
 def get_user_data(user_id):
+    connection = get_db()
+    sql = connection.cursor()
     data = sql.execute('''select * from users where userId = ?''', [user_id])
     return data
     
 
 def get_user_id(username):
+    connection = get_db()
+    sql = connection.cursor()
     data1 = sql.execute('''select userId from users where username = ?''', [username])
     data2 = data1.fetchone()
     return data2[0]
+    
 def get_questions(user_id):
+    connection = get_db()
+    sql = connection.cursor()
     user_q_list = get_user_questions(user_id)
     q_data = sql.execute('''select * from questions where userId not in ?'''[user_q_list])
     data = q_data.fetchall()
