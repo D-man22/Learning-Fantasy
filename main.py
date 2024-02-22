@@ -12,6 +12,8 @@ import pymysql
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, Response, g, current_app
 from flask_cors import CORS
 
+from flask.cli import with_appcontext
+
 #Set up Flask:
 app = Flask(__name__)
 #Set up Flask to bypass CORS:
