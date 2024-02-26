@@ -38,18 +38,18 @@ database = 'primarydb'
 #     password=password,
 #     database=database
 # )
-
-def getdb():
-    if 'db' not in g or not g.db.is_connected():
-        g.db = mysql.connector.connect(
-            host=current_app.config['3306'],
-            user=current_app.config[user],
-            password=current_app.config[password],
-            database=current_app.config[database],
-            ssl_verify_identity=True,
-            ssl_ca='SSL/certs/ca-cert.pem'
-        )
-    return g.db
+with app.app_context():
+    def getdb():
+        if 'db' not in g or not g.db.is_connected():
+            g.db = mysql.connector.connect(
+                host=current_app.config['3306'],
+                user=current_app.config[user],
+                password=current_app.config[password],
+                database=current_app.config[database],
+                ssl_verify_identity=True,
+                ssl_ca='SSL/certs/ca-cert.pem'
+            )
+        return g.db
 with app.app_context():
     db = getdb()
 
