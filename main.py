@@ -45,9 +45,7 @@ with app.app_context():
                 host='mysql://root:DjMqeN1ePD7NHQ2A@mysql-rds-noted-cherry-pz2e.cjaeoe84erpr.ca-central-1.rds.amazonaws.com:3306/primarydb',
                 user=user,
                 password=password,
-                database=database,
-                ssl_verify_identity=True,
-                ssl_ca='SSL/certs/ca-cert.pem'
+                database=database
             )
         return g.db
 with app.app_context():
