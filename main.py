@@ -19,8 +19,6 @@ app = Flask(__name__)
 #Set up Flask to bypass CORS:
 cors = CORS(app)
 
-from flask_sqlalchemy import SQLAlchemy
-
 # connection = sqlite3.connect('app.db', check_same_thread=False)
 # connection = mysql.connector.connect(
 #   host="mysql-rds-noted-cherry-pz2e.cjaeoe84erpr.ca-central-1.rds.amazonaws.com",
