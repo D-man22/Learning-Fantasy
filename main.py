@@ -42,7 +42,7 @@ with app.app_context():
     def getdb():
         if 'db' not in g or not g.db.is_connected():
             g.db = mysql.connector.connect(
-                host=current_app.config['mysql-rds-noted-cherry-pz2e.cjaeoe84erpr.ca-central-1.rds.amazonaws.com'],
+                host=current_app.config['mysql://root:DjMqeN1ePD7NHQ2A@mysql-rds-noted-cherry-pz2e.cjaeoe84erpr.ca-central-1.rds.amazonaws.com:3306/primarydb'],
                 user=current_app.config[user],
                 password=current_app.config[password],
                 database=current_app.config[database],
