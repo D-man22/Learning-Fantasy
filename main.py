@@ -32,33 +32,36 @@ password = 'DjMqeN1ePD7NHQ2A'
 database = 'primarydb'
 
 
-# db = pymysql.connections.Connection(
-#     host=hostname,
-#     user=user,
-#     password=password,
-#     database=database
-# )
-with app.app_context():
-    def getdb():
-        if 'db' not in g or not g.db.is_connected():
-            g.db = mysql.connector.connect(
-                host='mysql://root:DjMqeN1ePD7NHQ2A@mysql-rds-noted-cherry-pz2e.cjaeoe84erpr.ca-central-1.rds.amazonaws.com:3306/primarydb',
-                user=user,
-                password=password,
-                database=database
-            )
-        return g.db
-with app.app_context():
-    db = getdb()
+db = MySQLdb.connect(
+    host=hostname,
+    user=user,
+    password=password,
+    database=database
+)
+sql = db.cursor()
 
-def close_db(e=None):
-    db = g.pop('db', None)
-    if db is not None and db.is_connected():
-        db.close()
 
-current_app.teardown_appcontext(close_db)
+# with app.app_context():
+#     def getdb():
+#         if 'db' not in g or not g.db.is_connected():
+#             g.db = mysql.connector.connect(
+#                 host='mysql://root:DjMqeN1ePD7NHQ2A@mysql-rds-noted-cherry-pz2e.cjaeoe84erpr.ca-central-1.rds.amazonaws.com:3306/primarydb',
+#                 user=user,
+#                 password=password,
+#                 database=database
+#             )
+#         return g.db
+# with app.app_context():
+#     db = getdb()
 
-sql = db.cursor(dictionary=True)
+# def close_db(e=None):
+#     db = g.pop('db', None)
+#     if db is not None and db.is_connected():
+#         db.close()
+
+# current_app.teardown_appcontext(close_db)
+
+# sql = db.cursor(dictionary=True)
 
 
 
