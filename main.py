@@ -5,6 +5,7 @@ cgitb.enable()
 
 import sqlite3, json
 import mysql.connector
+import MySQLdb
 
 formDataLocal = cgi.FieldStorage()
 import pymysql
