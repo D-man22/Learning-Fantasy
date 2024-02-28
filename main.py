@@ -4,7 +4,7 @@ import cgitb, cgi
 cgitb.enable()
 
 import sqlite3, json
-# import mysql.connector
+import mysql.connector
 # import MySQLdb
 
 formDataLocal = cgi.FieldStorage()
@@ -33,7 +33,7 @@ password = 'DjMqeN1ePD7NHQ2A'
 database = 'primarydb'
 
 
-db = pymysql.connect(
+db = mysql.connector.connect(
     host=hostname,
     user=user,
     password=password,
@@ -68,7 +68,12 @@ sql = db.cursor()
 
 # account and questions tables
 with app.app_context():
-    sql.execute('''create table if not exists users("userId" integer primary key autoincrement,"username" Text,"password" Text,"questionsKnown" Text,"health" integer)''')
+    sql.execute('''create table if not exists users(
+    "userId" integer primary key autoincrement,
+    "username" Text,
+    "password" Text,
+    "questionsKnown" Text,
+    "health" integer)''')
 
     sql.execute('''
 create table if not exists questions(
