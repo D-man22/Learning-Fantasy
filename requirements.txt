@@ -9,10 +9,6 @@ gunicorn
 itsdangerous
 Jinja2
 MarkupSafe
-mysql-connector-python==2.1.15
-mysql-python
-MySQL-python
-MySQL-python-connector
 packaging
 PyMySQL
 typing_extensions
