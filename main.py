@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
-import cgitb, cgi
-cgitb.enable()
+import cgi
 
 import sqlite3, json
 import mysql.connector
