@@ -242,7 +242,6 @@ def login():
             session["username"] = username
             session["user_id"] = get_user_id(username)
             return redirect(url_for("main_menue"))
-
         else: 
             msg = "Incorrect Username or Password"
 
