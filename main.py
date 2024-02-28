@@ -20,7 +20,7 @@ app = Flask(__name__)
 #Set up Flask to bypass CORS:
 cors = CORS(app)
 
-db = sqlite3.connect('app.db', check_same_thread=False)
+# db = sqlite3.connect('app.db', check_same_thread=False)
 # connection = mysql.connector.connect(
 #   host="mysql-rds-noted-cherry-pz2e.cjaeoe84erpr.ca-central-1.rds.amazonaws.com",
 #   user="root",
@@ -33,12 +33,12 @@ password = 'DjMqeN1ePD7NHQ2A'
 database = 'primarydb'
 
 
-# db = MySQLdb.connect(
-#     host=hostname,
-#     user=user,
-#     password=password,
-#     database=database
-# )
+db = MySQLdb.connect(
+    host=hostname,
+    user=user,
+    password=password,
+    database=database
+)
 sql = db.cursor()
 
 
