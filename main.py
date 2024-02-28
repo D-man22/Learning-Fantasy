@@ -38,8 +38,10 @@ db = mysql.connector.connect(
     password=password,
     database=database
 )
-sql = db.cursor()
 
+print(db)
+
+sql = db.cursor()
 
 # with app.app_context():
 #     def getdb():
