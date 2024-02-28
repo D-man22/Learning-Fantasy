@@ -4,8 +4,8 @@ import cgitb, cgi
 cgitb.enable()
 
 import sqlite3, json
-import mysql.connector
-import MySQLdb
+# import mysql.connector
+# import MySQLdb
 
 
 formDataLocal = cgi.FieldStorage()
@@ -34,7 +34,7 @@ password = 'DjMqeN1ePD7NHQ2A'
 database = 'primarydb'
 
 
-db = MySQLdb.connect(
+db = pymysql.connect(
     host=hostname,
     user=user,
     password=password,
