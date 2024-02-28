@@ -9,7 +9,8 @@ gunicorn
 itsdangerous
 Jinja2
 MarkupSafe
-mysql-connector
+mysql-connector-python
+mysql-python
 MySQL-python
 MySQL-python-connector
 packaging
