@@ -10,7 +10,7 @@ itsdangerous
 Jinja2
 MarkupSafe
 mysql-connector
-mysqlclient
+
 packaging
 PyMySQL
 typing_extensions
