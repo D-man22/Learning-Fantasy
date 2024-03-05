@@ -32,7 +32,7 @@ password = 'DjMqeN1ePD7NHQ2A'
 database = 'primarydb'
 
 
-db = mysql.connector.connect(
+db = pymysql.connect(
     host=hostname,
     user=user,
     password=password,
