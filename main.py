@@ -68,27 +68,27 @@ sql = db.cursor()
 
 
 # account and questions tables
-with app.app_context():
-    sql.execute('''create table if not exists users(
-    "userId" integer primary key autoincrement,
-    "username" Text,
-    "password" Text,
-    "questionsKnown" Text,
-    "health" integer)''')
+# with app.app_context():
+#     sql.execute('''create table if not exists users(
+#     "userId" integer primary key autoincrement,
+#     "username" Text,
+#     "password" Text,
+#     "questionsKnown" Text,
+#     "health" integer)''')
 
-    sql.execute('''
-create table if not exists questions(
-    "questionId" integer primary key autoincrement,
-    "questions" Text,
-    "possibleAnswers" Text,
-    "rightAnswers" Text, 
-    "isMath" integer,
-    "isFrench" integer,
-    "isHistory" integer,
-    "isScience" integer,
-    "difficulty" integer
+#     sql.execute('''
+# create table if not exists questions(
+#     "questionId" integer primary key autoincrement,
+#     "questions" Text,
+#     "possibleAnswers" Text,
+#     "rightAnswers" Text, 
+#     "isMath" integer,
+#     "isFrench" integer,
+#     "isHistory" integer,
+#     "isScience" integer,
+#     "difficulty" integer
     
-)''')
+# )''')
 
 
 # sql.execute('insert into questions (questions, possibleAnswers, rightAnswers, isMath, isFrench, isHistory, isScience, difficulty) values ("a", "b", "c", 1, 2 ,3, 4, 5)')
